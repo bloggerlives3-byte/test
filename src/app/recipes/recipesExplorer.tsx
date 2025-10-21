@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { Suspense, useEffect, useMemo, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import type { SmoothieRecipe } from "@/data/recipes";
 import { boosters } from "@/data/ingredients";
@@ -10,7 +10,7 @@ type RecipesExplorerProps = {
   recipes: SmoothieRecipe[];
 };
 
-const RecipesExplorer = ({ recipes }: RecipesExplorerProps) => {
+const RecipesExplorerContent = ({ recipes }: RecipesExplorerProps) => {
   const searchParams = useSearchParams();
   const focusRecipeId = searchParams.get("focus");
   const focusRef = useRef<HTMLDivElement | null>(null);
@@ -161,5 +161,11 @@ const RecipesExplorer = ({ recipes }: RecipesExplorerProps) => {
     </div>
   );
 };
+
+const RecipesExplorer = (props: RecipesExplorerProps) => (
+  <Suspense fallback={<div className="px-4 py-16 text-sm text-[color:var(--color-foreground)]/60">Loading recipes...</div>}>
+    <RecipesExplorerContent {...props} />
+  </Suspense>
+);
 
 export default RecipesExplorer;
