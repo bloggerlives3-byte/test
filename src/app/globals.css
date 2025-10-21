@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7fbf7;
+  --foreground: #1f2a24;
+  --accent-berry: #ed4c78;
+  --accent-mango: #f8b400;
+  --accent-leaf: #2e7d60;
+  --surface: #ffffff;
+  --border: rgba(31, 42, 36, 0.1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent-berry: var(--accent-berry);
+  --color-accent-mango: var(--accent-mango);
+  --color-accent-leaf: var(--accent-leaf);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --font-sans: var(--font-heading);
+  --font-body: var(--font-body);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+}
