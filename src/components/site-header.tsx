@@ -7,6 +7,7 @@ const links = [
   { href: "/builder", label: "Smoothie Builder" },
   { href: "/recipes", label: "Signature Recipes" },
   { href: "/grocery", label: "Grocery List" },
+  { href: "/monetization", label: "Monetization" },
 ];
 
 export const SiteHeader = () => {
