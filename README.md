@@ -78,7 +78,7 @@ create table if not exists signature_recipes (
 - `/builder` Multi-select ingredient builder with live macros, booster toggles, and local + Supabase persistence.
 - `/recipes` Signature library with step-by-step instructions and favorite syncing.
 - `/grocery` Generates a combined grocery checklist with clipboard/email/download export options.
-- `/monetization` Centralizes revenue strategies (SMU-V+, packs, partnerships, affiliate, B2B, rewards).
+- `/pricing` Freemium, Premium, and Pro plans with shoppable add-on packs.
 
 Local storage retains smoothies and favorites for offline use. When Supabase keys are provided, actions sync in the background.
 
