@@ -79,6 +79,7 @@ create table if not exists signature_recipes (
 - `/recipes` Signature library with step-by-step instructions and favorite syncing.
 - `/grocery` Generates a combined grocery checklist with clipboard/email/download export options.
 - `/pricing` Freemium, Premium, and Pro plans with shoppable add-on packs.
+- `/pricing/packs` Dedicated pack marketplace with product detail pages and checkout.
 
 Local storage retains smoothies and favorites for offline use. When Supabase keys are provided, actions sync in the background.
 
