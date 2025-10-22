@@ -1,6 +1,25 @@
-const seasonalSets = {
+type SeasonalRecipe = {
+  id: string;
+  name: string;
+  description: string;
+  macros: { calories: number; protein: number; carbs: number };
+  ingredients: string[];
+  boosters: string[];
+  steps: string[];
+};
+
+const seasonalSets: Record<
+  string,
+  {
+    title: string;
+    heading: string;
+    description: string;
+    recipes: SeasonalRecipe[];
+  }
+> = {
   winter: {
     title: "Seasonal Drops · Winter Immunity",
+    heading: "Cozy blends for immune support",
     description:
       "Rotate these feature recipes into your routine when the temperatures drop. Each card highlights ingredients, boosters, and step-by-step guidance.",
     recipes: [
@@ -65,6 +84,7 @@ const seasonalSets = {
   },
   spring: {
     title: "Seasonal Drops · Spring Reset",
+    heading: "Light and refreshing resets",
     description:
       "Lighten up with greens, herbs, and citrus-forward blends designed to refresh after winter.",
     recipes: [
@@ -130,8 +150,8 @@ const seasonalSets = {
 };
 
 const SeasonalDropsPage = ({ searchParams }: { searchParams: { season?: string } }) => {
-  const season = searchParams?.season;
-  const activeSet = season === "spring" ? seasonalSets.spring : seasonalSets.winter;
+  const season = searchParams?.season ?? "winter";
+  const activeSet = seasonalSets[season] ?? seasonalSets.winter;
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-16">
@@ -146,7 +166,7 @@ const SeasonalDropsPage = ({ searchParams }: { searchParams: { season?: string }
           {activeSet.title}
         </p>
         <h1 className="text-3xl font-semibold text-[color:var(--color-foreground)]">
-          {hash.includes("spring") ? "Light and refreshing resets" : "Cozy blends for immune support"}
+          {activeSet.heading}
         </h1>
         <p className="text-sm text-[color:var(--color-foreground)]/70">
           {activeSet.description}
