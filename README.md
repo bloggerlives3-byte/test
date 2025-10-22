@@ -20,11 +20,11 @@ Visit `http://localhost:3000` to explore the experience.
 
 ### Supabase Configuration
 
-Populate `.env.local` with:
+Populate `.env.local` with your Supabase project credentials:
 
 ```
-NEXT_PUBLIC_SUPABASE_URL=https://bbpoeyzaxxsnawcxkydp.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJicG9leXpheHhzbmF3Y3hreWRwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA3NDg0MDksImV4cCI6MjA3NjMyNDQwOX0.fYDoVa3GyA126bXIpSynVJesFRAmqqt8PTAlyRkcCuQ
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
 ```
 
 Create tables to sync saved smoothies, favorite recipes, and wellness tips:
@@ -79,7 +79,9 @@ create table if not exists signature_recipes (
 - `/recipes` Signature library with step-by-step instructions and favorite syncing.
 - `/grocery` Generates a combined grocery checklist with clipboard/email/download export options.
 - `/pricing` Freemium, Premium, and Pro plans with shoppable add-on packs.
+- `/pricing/free`, `/pricing/premium`, `/pricing/pro` tier deep-dives with CTAs into checkout.
 - `/pricing/packs` Dedicated pack marketplace with product detail pages and checkout.
+- `/pricing/checkout` Demo checkout flow ready to wire to Stripe.
 
 Local storage retains smoothies and favorites for offline use. When Supabase keys are provided, actions sync in the background.
 
@@ -89,6 +91,17 @@ Local storage retains smoothies and favorites for offline use. When Supabase key
 - `npm run build` – production build.
 - `npm run lint` – ESLint check (already clean).
 
+### Stripe Integration
+
+- Set the following env vars with your Stripe price IDs (see `.env.example`):
+  - `NEXT_PUBLIC_STRIPE_PRICE_PREMIUM`
+  - `NEXT_PUBLIC_STRIPE_PRICE_PRO`
+  - `NEXT_PUBLIC_STRIPE_PRICE_PACK_IMMUNITY`
+  - `NEXT_PUBLIC_STRIPE_PRICE_PACK_LOW_SUGAR`
+  - `NEXT_PUBLIC_STRIPE_PRICE_PACK_KIDS`
+- Update `src/app/pricing/checkout/page.tsx` to call your API route that creates Stripe Checkout Sessions (the current handler is a stub with an alert).
+- Replace the sample card fields with Stripe Elements or redirect to a hosted Checkout session once your backend is wired.
+
 ### Design Notes
 
-Brand styling uses Montserrat headings, Open Sans body copy, and a fresh palette (leaf green, berry pink, mango yellow) per the PRD guidance.
+Brand styling uses Montserrat headings, Open Sans body copy, and a fresh palette (leaf green, berry pink, mango yellow) per the PRD guidance. The header now includes a responsive hamburger menu for mobile/tablet with accessible labels.

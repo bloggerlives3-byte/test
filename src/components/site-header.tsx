@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -16,6 +16,36 @@ export const SiteHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeMenu = () => setIsMenuOpen(false);
+
+  useEffect(() => {
+    closeMenu();
+  }, [pathname]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        closeMenu();
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isMenuOpen]);
 
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--color-border)] bg-[color:var(--color-surface)]/95 backdrop-blur">
@@ -57,11 +87,12 @@ export const SiteHeader = () => {
         </nav>
         <button
           type="button"
-          aria-label="Toggle menu"
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMenuOpen}
+          aria-controls="smuv-mobile-nav"
           className="rounded-full border border-[color:var(--color-border)] p-2 text-[color:var(--color-foreground)] transition hover:border-[color:var(--color-accent-leaf)]/60 md:hidden"
           onClick={() => setIsMenuOpen((prev) => !prev)}
         >
-          <span className="sr-only">Menu</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -70,12 +101,19 @@ export const SiteHeader = () => {
             strokeWidth="1.5"
             className="h-5 w-5"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            {isMenuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 6l12 12M6 18L18 6" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            )}
           </svg>
         </button>
       </div>
       {isMenuOpen ? (
-        <div className="border-t border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-4 py-3 md:hidden">
+        <div
+          id="smuv-mobile-nav"
+          className="border-t border-[color:var(--color-border)] bg-[color:var(--color-surface)] px-4 py-3 md:hidden"
+        >
           <nav className="flex flex-col gap-2 text-sm font-medium">
             {links.map((link) => {
               const isActive =

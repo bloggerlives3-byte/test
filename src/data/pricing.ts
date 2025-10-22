@@ -8,16 +8,18 @@ export type PricingTier = {
     label: string;
     href: string;
   };
+  stripePriceEnv?: string;
   popular?: boolean;
 };
 
 export type AddOnPack = {
   id: string;
+  slug: string;
   title: string;
   price: string;
   description: string;
   features: string[];
-  href: string;
+  stripePriceEnv?: string;
 };
 
 export const pricingTiers: PricingTier[] = [
@@ -34,7 +36,7 @@ export const pricingTiers: PricingTier[] = [
     ],
     cta: {
       label: "Start Blending",
-      href: "https://pay.smuv-guide.com/free",
+      href: "/pricing/free",
     },
   },
   {
@@ -50,8 +52,9 @@ export const pricingTiers: PricingTier[] = [
     ],
     cta: {
       label: "Upgrade to SMU-V+",
-      href: "https://pay.smuv-guide.com/premium",
+      href: "/pricing/premium",
     },
+    stripePriceEnv: "NEXT_PUBLIC_STRIPE_PRICE_PREMIUM",
     popular: true,
   },
   {
@@ -67,14 +70,16 @@ export const pricingTiers: PricingTier[] = [
     ],
     cta: {
       label: "Launch Pro Workspace",
-      href: "https://pay.smuv-guide.com/pro",
+      href: "/pricing/pro",
     },
+    stripePriceEnv: "NEXT_PUBLIC_STRIPE_PRICE_PRO",
   },
 ];
 
 export const addOnPacks: AddOnPack[] = [
   {
     id: "pack-immunity",
+    slug: "winter-immunity",
     title: "Winter Immunity Pack",
     price: "$2.99",
     description: "Cold-weather blends with immunity boosters and tips.",
@@ -83,10 +88,11 @@ export const addOnPacks: AddOnPack[] = [
       "Ingredient sourcing cheat sheet",
       "Wellness coach video walkthrough",
     ],
-    href: "https://pay.smuv-guide.com/packs/winter-immunity",
+    stripePriceEnv: "NEXT_PUBLIC_STRIPE_PRICE_PACK_IMMUNITY",
   },
   {
     id: "pack-low-sugar",
+    slug: "low-sugar",
     title: "Low-Sugar Sips",
     price: "$1.99",
     description: "Balanced smoothies tailored for steady energy without spikes.",
@@ -95,10 +101,11 @@ export const addOnPacks: AddOnPack[] = [
       "Sweetener swap guide",
       "Macro calculator cheat sheet",
     ],
-    href: "https://pay.smuv-guide.com/packs/low-sugar",
+    stripePriceEnv: "NEXT_PUBLIC_STRIPE_PRICE_PACK_LOW_SUGAR",
   },
   {
     id: "pack-kids",
+    slug: "kids",
     title: "Smoothies for Kids",
     price: "$1.49",
     description: "Creative blends sized for kid-approved nutrition.",
@@ -107,6 +114,49 @@ export const addOnPacks: AddOnPack[] = [
       "Allergy-friendly substitutions",
       "Printable reward chart",
     ],
-    href: "https://pay.smuv-guide.com/packs/kids",
+    stripePriceEnv: "NEXT_PUBLIC_STRIPE_PRICE_PACK_KIDS",
   },
 ];
+
+export const getPricingTierById = (id: string) =>
+  pricingTiers.find((tier) => tier.id === id);
+
+export const getPackBySlug = (slug: string) =>
+  addOnPacks.find((pack) => pack.slug === slug);
+
+export type CheckoutProduct = {
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  type: "tier" | "pack";
+  stripePriceEnv?: string;
+};
+
+export const getCheckoutProduct = (identifier: string): CheckoutProduct | null => {
+  const tier = pricingTiers.find((item) => item.id === identifier && item.id !== "free");
+  if (tier) {
+    return {
+      id: tier.id,
+      name: tier.name,
+      description: tier.description,
+      price: tier.price,
+      type: "tier",
+      stripePriceEnv: tier.stripePriceEnv,
+    };
+  }
+
+  const packBySlug = getPackBySlug(identifier);
+  if (packBySlug) {
+    return {
+      id: packBySlug.slug,
+      name: packBySlug.title,
+      description: packBySlug.description,
+      price: packBySlug.price,
+      type: "pack",
+      stripePriceEnv: packBySlug.stripePriceEnv,
+    };
+  }
+
+  return null;
+};
