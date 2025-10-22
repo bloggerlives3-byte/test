@@ -20,6 +20,12 @@ export type AddOnPack = {
   description: string;
   features: string[];
   stripePriceEnv?: string;
+  stripeBuyButton?: {
+    buyButtonId: string;
+    publishableKey: string;
+    fallbackUrl?: string;
+    successUrl: string;
+  };
 };
 
 export const pricingTiers: PricingTier[] = [
@@ -89,6 +95,13 @@ export const addOnPacks: AddOnPack[] = [
       "Wellness coach video walkthrough",
     ],
     stripePriceEnv: "NEXT_PUBLIC_STRIPE_PRICE_PACK_IMMUNITY",
+    stripeBuyButton: {
+      buyButtonId: "buy_btn_1SL361IwAOAga7NXcfB2v8wG",
+      publishableKey:
+        "pk_live_51RlugcIwAOAga7NXiVVIwGv1ZhSx5KT2cJUT5IPGTQcm905LmpvQZnNOsa6ShW5ncOcJUb49x7roLC3LD7fb3CUt009zsJrxZE",
+      fallbackUrl: "https://buy.stripe.com/9B63cw5l83724si8Shffy0b",
+      successUrl: "https://smuvvguide.vercel.app/packs/winter-immunity/success",
+    },
   },
   {
     id: "pack-low-sugar",

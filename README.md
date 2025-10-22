@@ -84,6 +84,7 @@ create table if not exists signature_recipes (
 - `/pricing/checkout` Demo checkout flow ready to wire to Stripe.
 - `/premium/success` Post-purchase resource hub for SMU-V+ Premium members (set Stripe return URL to `https://smuvvguide.vercel.app/premium/success`).
 - `/pro/success` Post-purchase resource hub for SMU-V Pro teams (set Stripe return URL to `https://smuvvguide.vercel.app/pro/success`).
+- `/packs/winter-immunity/success` Post-purchase resource hub for the Winter Immunity pack (set Stripe return URL to `https://smuvvguide.vercel.app/packs/winter-immunity/success`).
 
 Local storage retains smoothies and favorites for offline use. When Supabase keys are provided, actions sync in the background.
 
@@ -103,7 +104,7 @@ Local storage retains smoothies and favorites for offline use. When Supabase key
   - `NEXT_PUBLIC_STRIPE_PRICE_PACK_KIDS`
 - Update `src/app/pricing/checkout/page.tsx` to call your API route that creates Stripe Checkout Sessions (the current handler is a stub with an alert).
 - Replace the sample card fields with Stripe Elements or redirect to a hosted Checkout session once your backend is wired.
-- If you are using Stripe Buy Buttons, edit `src/app/pricing/premium/page.tsx` and `src/app/pricing/pro/page.tsx` (component `StripeBuyButton`) with your live `buy-button-id`, `publishable-key`, and optional fallback URL. Set Stripe’s redirect URLs to the matching success pages (`https://smuvvguide.vercel.app/premium/success` and `https://smuvvguide.vercel.app/pro/success`).
+- If you are using Stripe Buy Buttons, edit `src/app/pricing/premium/page.tsx`, `src/app/pricing/pro/page.tsx`, and `src/app/pricing/packs/[slug]/page.tsx` with your live `buy-button-id`, `publishable-key`, and optional fallback URLs. Set Stripe’s redirect URLs to the matching success pages (`/premium/success`, `/pro/success`, `/packs/<slug>/success`).
 
 ### Design Notes
 

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import StripeBuyButton from "@/components/stripe-buy-button";
 import { getPackBySlug } from "@/data/pricing";
 
 const PackDetailPage = ({ params }: { params: { slug: string } }) => {
@@ -63,12 +64,21 @@ const PackDetailPage = ({ params }: { params: { slug: string } }) => {
           Complete your purchase and the pack will be available instantly in
           your account.
         </p>
-        <Link
-          href={`/pricing/checkout?product=${pack.slug}`}
-          className="inline-flex items-center justify-center rounded-full bg-[color:var(--color-accent-leaf)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[color:var(--color-accent-leaf)]/90"
-        >
-          Buy Now – {pack.price}
-        </Link>
+        {pack.stripeBuyButton ? (
+          <StripeBuyButton
+            buyButtonId={pack.stripeBuyButton.buyButtonId}
+            publishableKey={pack.stripeBuyButton.publishableKey}
+            fallbackUrl={pack.stripeBuyButton.fallbackUrl}
+            className="mx-auto w-full max-w-sm"
+          />
+        ) : (
+          <Link
+            href={`/pricing/checkout?product=${pack.slug}`}
+            className="inline-flex items-center justify-center rounded-full bg-[color:var(--color-accent-leaf)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[color:var(--color-accent-leaf)]/90"
+          >
+            Buy Now – {pack.price}
+          </Link>
+        )}
       </div>
     </div>
   );
