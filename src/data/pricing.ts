@@ -115,6 +115,13 @@ export const addOnPacks: AddOnPack[] = [
       "Macro calculator cheat sheet",
     ],
     stripePriceEnv: "NEXT_PUBLIC_STRIPE_PRICE_PACK_LOW_SUGAR",
+    stripeBuyButton: {
+      buyButtonId: "buy_btn_1SL3odIwAOAga7NXpFSF1BUF",
+      publishableKey:
+        "pk_live_51RlugcIwAOAga7NXiVVIwGv1ZhSx5KT2cJUT5IPGTQcm905LmpvQZnNOsa6ShW5ncOcJUb49x7roLC3LD7fb3CUt009zsJrxZE",
+      fallbackUrl: "https://buy.stripe.com/28E9AU28WcHCf6W4C1ffy0c",
+      successUrl: "https://smuvvguide.vercel.app/packs/low-sugar/success",
+    },
   },
   {
     id: "pack-kids",

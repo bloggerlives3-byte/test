@@ -85,6 +85,7 @@ create table if not exists signature_recipes (
 - `/premium/success` Post-purchase resource hub for SMU-V+ Premium members (set Stripe return URL to `https://smuvvguide.vercel.app/premium/success`).
 - `/pro/success` Post-purchase resource hub for SMU-V Pro teams (set Stripe return URL to `https://smuvvguide.vercel.app/pro/success`).
 - `/packs/winter-immunity/success` Post-purchase resource hub for the Winter Immunity pack (set Stripe return URL to `https://smuvvguide.vercel.app/packs/winter-immunity/success`).
+- `/packs/low-sugar/success` Post-purchase resource hub for the Low-Sugar Sips pack (set Stripe return URL to `https://smuvvguide.vercel.app/packs/low-sugar/success`).
 
 Local storage retains smoothies and favorites for offline use. When Supabase keys are provided, actions sync in the background.
 
