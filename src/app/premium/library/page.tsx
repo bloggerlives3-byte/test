@@ -5,10 +5,10 @@ const PremiumLibraryPage = () => {
       description:
         "Fresh blends released each season so you always have an in-season flavor on rotation.",
       highlights: [
-        { label: "Winter Immunity series with warming spices", href: "/premium/library/seasonal-drops#winter-immunity" },
-        { label: "Spring greens reset featuring citrus", href: "/premium/library/seasonal-drops#spring-reset" },
-        { label: "Summer hydration with coconut and mint", href: "/premium/library/seasonal-drops#summer-hydration" },
-        { label: "Autumn chai-inspired recovery blends", href: "/premium/library/seasonal-drops#autumn-recovery" },
+        { label: "Winter Immunity series with warming spices", href: "/premium/library/seasonal-drops?season=winter" },
+        { label: "Spring greens reset featuring citrus", href: "/premium/library/seasonal-drops?season=spring" },
+        { label: "Summer hydration with coconut and mint", href: "/premium/library/seasonal-drops?season=summer" },
+        { label: "Autumn chai-inspired recovery blends", href: "/premium/library/seasonal-drops?season=autumn" },
       ],
     },
     {
