@@ -24,7 +24,7 @@ const PremiumSuccessPage = () => {
             Explore seasonal drops, performance blends, and kid-friendly favorites curated just for premium members.
           </p>
           <Link
-            href="/recipes?focus=premium"
+            href="/premium/library"
             className="mt-4 inline-flex items-center justify-center rounded-full bg-[color:var(--color-accent-leaf)] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[color:var(--color-accent-leaf)]/90"
           >
             Browse Signature Recipes
@@ -39,7 +39,7 @@ const PremiumSuccessPage = () => {
             Access tailored templates (muscle, detox, energy) and personalize them with your saved smoothies.
           </p>
           <Link
-            href="/builder"
+            href="/premium/goal-plans"
             className="mt-4 inline-flex items-center justify-center rounded-full border border-[color:var(--color-accent-leaf)] px-4 py-2 text-xs font-semibold text-[color:var(--color-accent-leaf)] transition hover:bg-[color:var(--color-accent-leaf)]/10"
           >
             Start Building
@@ -54,7 +54,7 @@ const PremiumSuccessPage = () => {
             Premium bundles include boosted grocery exports and printable PDFs to share with family or clients.
           </p>
           <Link
-            href="/grocery"
+            href="/premium/grocery"
             className="mt-4 inline-flex items-center justify-center rounded-full border border-[color:var(--color-accent-berry)] px-4 py-2 text-xs font-semibold text-[color:var(--color-accent-berry)] transition hover:bg-[color:var(--color-accent-berry)]/10"
           >
             Open Grocery Tools
@@ -70,7 +70,7 @@ const PremiumSuccessPage = () => {
           </p>
           <div className="mt-4 flex flex-col gap-2 text-xs">
             <Link
-              href="/downloads/smuv-premium-starter.pdf"
+              href="/premium/starter-kit"
               className="rounded-full bg-[color:var(--color-accent-berry)] px-4 py-2 text-center font-semibold text-white transition hover:bg-[color:var(--color-accent-berry)]/90"
             >
               Download Starter Kit
