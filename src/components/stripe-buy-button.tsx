@@ -1,7 +1,7 @@
 "use client";
 
+import { createElement } from "react";
 import Script from "next/script";
-import "@/types/stripe";
 
 type StripeBuyButtonProps = {
   buyButtonId: string;
@@ -18,7 +18,10 @@ const StripeBuyButton = ({ buyButtonId, publishableKey, fallbackUrl, className }
         src="https://js.stripe.com/v3/buy-button.js"
         strategy="lazyOnload"
       />
-      <stripe-buy-button buy-button-id={buyButtonId} publishable-key={publishableKey} />
+      {createElement("stripe-buy-button", {
+        "buy-button-id": buyButtonId,
+        "publishable-key": publishableKey,
+      })}
       {fallbackUrl ? (
         <p className="mt-3 text-xs text-[color:var(--color-foreground)]/60">
           Having trouble? Place your order directly via
