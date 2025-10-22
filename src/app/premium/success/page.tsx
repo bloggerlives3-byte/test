@@ -3,6 +3,13 @@ import Link from "next/link";
 const PremiumSuccessPage = () => {
   return (
     <div className="mx-auto max-w-3xl px-4 py-16">
+      <Link
+        href="/premium/library"
+        className="text-xs font-semibold text-[color:var(--color-accent-leaf)] underline-offset-4 hover:underline"
+      >
+        ← Back to premium library
+      </Link>
+      <div className="mt-4">
       <header className="flex flex-col gap-4 rounded-3xl bg-[color:var(--color-accent-leaf)]/10 p-6">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--color-accent-leaf)]">
           Welcome to SMU-V+ Premium
@@ -122,6 +129,7 @@ const PremiumSuccessPage = () => {
           Bookmark this page: <code>https://smuvvguide.vercel.app/premium/success</code>. After checkout, redirect your Stripe payment link here so members land on their resources instantly.
         </p>
       </footer>
+      </div>
     </div>
   );
 };

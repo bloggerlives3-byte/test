@@ -5,10 +5,10 @@ const PremiumLibraryPage = () => {
       description:
         "Fresh blends released each season so you always have an in-season flavor on rotation.",
       highlights: [
-        "Winter Immunity series with warming spices",
-        "Spring greens reset featuring citrus",
-        "Summer hydration with coconut and mint",
-        "Autumn chai-inspired recovery blends",
+        { label: "Winter Immunity series with warming spices", href: "/premium/library/seasonal-drops#winter-immunity" },
+        { label: "Spring greens reset featuring citrus", href: "/premium/library/seasonal-drops#spring-reset" },
+        { label: "Summer hydration with coconut and mint", href: "/premium/library/seasonal-drops#summer-hydration" },
+        { label: "Autumn chai-inspired recovery blends", href: "/premium/library/seasonal-drops#autumn-recovery" },
       ],
     },
     {
@@ -16,10 +16,10 @@ const PremiumLibraryPage = () => {
       description:
         "Macro-balanced formulas designed for endurance, strength, and recovery goals.",
       highlights: [
-        "Pre-workout carb-optimized lineup",
-        "Post-lift high-protein refuelers",
-        "Low-glycemic morning energy smoothies",
-        "Advanced booster tips with adaptogens",
+        { label: "Pre-workout carb-optimized lineup", href: "/premium/library/performance-blends#pre-workout" },
+        { label: "Post-lift high-protein refuelers", href: "/premium/library/performance-blends#post-lift" },
+        { label: "Low-glycemic morning energy smoothies", href: "/premium/library/performance-blends#low-glycemic" },
+        { label: "Advanced booster tips with adaptogens", href: "/premium/library/performance-blends#advanced-boosters" },
       ],
     },
     {
@@ -27,10 +27,10 @@ const PremiumLibraryPage = () => {
       description:
         "Playful textures and hidden veggies to keep smaller palates excited and nourished.",
       highlights: [
-        "Colorful unicorn-inspired blends",
-        "Nut-free school-safe options",
-        "Frozen popsicle conversions",
-        "DIY topping bar ideas",
+        { label: "Colorful unicorn-inspired blends", href: "/premium/library/kid-friendly#colorful-creations" },
+        { label: "Nut-free school-safe options", href: "/premium/library/kid-friendly#school-safe" },
+        { label: "Frozen popsicle conversions", href: "/premium/library/kid-friendly#frozen-fun" },
+        { label: "DIY topping bar ideas", href: "/premium/library/kid-friendly#topping-bar" },
       ],
     },
   ];
@@ -61,9 +61,16 @@ const PremiumLibraryPage = () => {
             <p className="mt-2 text-sm text-[color:var(--color-foreground)]/70">
               {section.description}
             </p>
-            <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-[color:var(--color-foreground)]/80">
+            <ul className="mt-4 space-y-2 text-sm text-[color:var(--color-foreground)]/80">
               {section.highlights.map((item) => (
-                <li key={item}>{item}</li>
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    className="text-[color:var(--color-accent-berry)] underline-offset-4 hover:underline"
+                  >
+                    {item.label}
+                  </a>
+                </li>
               ))}
             </ul>
           </article>
