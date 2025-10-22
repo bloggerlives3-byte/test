@@ -119,7 +119,7 @@ const PremiumSuccessPage = () => {
 
       <footer className="mt-10 rounded-3xl bg-[color:var(--color-accent-leaf)]/10 p-6 text-sm text-[color:var(--color-foreground)]/70">
         <p>
-          Bookmark this page: <code>https://yourdomain.com/premium/success</code>. After checkout, redirect your Stripe payment link here so members land on their resources instantly.
+          Bookmark this page: <code>https://smuvvguide.vercel.app/premium/success</code>. After checkout, redirect your Stripe payment link here so members land on their resources instantly.
         </p>
       </footer>
     </div>
