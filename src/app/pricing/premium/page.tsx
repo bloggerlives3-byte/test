@@ -1,4 +1,5 @@
 import Link from "next/link";
+import StripeBuyButton from "@/components/stripe-buy-button";
 import { getPricingTierById } from "@/data/pricing";
 
 const PremiumTierPage = () => {
@@ -54,12 +55,12 @@ const PremiumTierPage = () => {
         <p className="text-sm text-[color:var(--color-foreground)]/70">
           Subscribe to SMU-V+ Premium and your benefits unlock immediately.
         </p>
-        <Link
-          href="/pricing/checkout?product=premium"
-          className="inline-flex items-center justify-center rounded-full bg-[color:var(--color-accent-leaf)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[color:var(--color-accent-leaf)]/90"
-        >
-          Upgrade Now – {tier.price}
-        </Link>
+        <StripeBuyButton
+          buyButtonId="buy_btn_1SL0XRIwAOAga7NX38N7uesu"
+          publishableKey="pk_live_51RlugcIwAOAga7NXiVVIwGv1ZhSx5KT2cJUT5IPGTQcm905LmpvQZnNOsa6ShW5ncOcJUb49x7roLC3LD7fb3CUt009zsJrxZE"
+          fallbackUrl="https://buy.stripe.com/8x28wQ14ScHCgb02tTffy09"
+          className="mx-auto w-full max-w-sm"
+        />
       </div>
     </div>
   );
