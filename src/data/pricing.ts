@@ -135,6 +135,13 @@ export const addOnPacks: AddOnPack[] = [
       "Printable reward chart",
     ],
     stripePriceEnv: "NEXT_PUBLIC_STRIPE_PRICE_PACK_KIDS",
+    stripeBuyButton: {
+      buyButtonId: "buy_btn_1SL489IwAOAga7NXO5CaWVEo",
+      publishableKey:
+        "pk_live_51RlugcIwAOAga7NXiVVIwGv1ZhSx5KT2cJUT5IPGTQcm905LmpvQZnNOsa6ShW5ncOcJUb49x7roLC3LD7fb3CUt009zsJrxZE",
+      fallbackUrl: "https://buy.stripe.com/aFa7sMaFs8rm3oe9Wlffy0d",
+      successUrl: "https://smuvvguide.vercel.app/packs/kids/success",
+    },
   },
 ];
 
