@@ -1,6 +1,6 @@
 import Link from "next/link";
-import SeasonalRecipeCard from "../seasonal-drops/SeasonalRecipeCard";
-import type { SeasonalRecipe } from "../seasonal-drops/types";
+import SeasonalRecipeCard from "../library/seasonal-drops/SeasonalRecipeCard";
+import type { SeasonalRecipe } from "../library/seasonal-drops/types";
 
 const GOAL_PLANS: SeasonalRecipe[] = [
   {
