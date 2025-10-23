@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslation } from "@/i18n/TranslationProvider";
-import LocaleSwitcher from "./locale-switcher";
 
 const links = [
   { href: "/", labelKey: "navigation.home" },
@@ -87,7 +86,6 @@ export const SiteHeader = () => {
               </Link>
             );
           })}
-          <LocaleSwitcher />
         </nav>
         <button
           type="button"
@@ -140,9 +138,6 @@ export const SiteHeader = () => {
                 </Link>
               );
             })}
-            <div className="pt-2">
-              <LocaleSwitcher />
-            </div>
           </nav>
         </div>
       ) : null}
