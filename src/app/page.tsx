@@ -1,11 +1,22 @@
 import Link from "next/link";
 import { fetchSignatureRecipes, fetchWellnessTip } from "@/lib/data-service";
-import { useTranslation } from "@/i18n/TranslationProvider";
 
-const featureKeys = [
-  "features.0",
-  "features.1",
-  "features.2",
+const featureHighlights = [
+  {
+    title: "Blend Your Way",
+    description:
+      "Select fruit, greens, and protein in seconds with real-time nutrition estimates.",
+  },
+  {
+    title: "Curated Favorites",
+    description:
+      "Lean on six signature smoothies tested for taste, health, and simplicity.",
+  },
+  {
+    title: "Smart Shopping",
+    description:
+      "Turn any smoothie into a shareable grocery checklist or quick email draft.",
+  },
 ];
 
 export default async function Home() {
