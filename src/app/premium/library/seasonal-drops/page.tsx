@@ -3,6 +3,8 @@ type SeasonalRecipe = {
   name: string;
   description: string;
   macros: { calories: number; protein: number; carbs: number };
+  saves?: number;
+  color?: string;
   ingredients: string[];
   boosters: string[];
   steps: string[];
@@ -147,6 +149,77 @@ const seasonalSets: Record<
       },
     ],
   },
+  summer: {
+    title: "Seasonal Drops · Summer Hydration",
+    heading: "Cooling blends for sunny days",
+    description:
+      "Stay refreshed with electrolyte-rich fruits, herbs, and coconut water. Use these recipes to keep hydration levels up all season.",
+    recipes: [
+      {
+        id: "coconut-aloe-cooler",
+        name: "Coconut Aloe Cooler",
+        description: "Soothing aloe and coconut water replenish electrolytes post-sun.",
+        macros: { calories: 180, protein: 4, carbs: 32 },
+        saves: 124,
+        color: "#81d4fa",
+        ingredients: [
+          "1 cup coconut water",
+          "1/2 cup aloe vera juice",
+          "1/2 cup pineapple",
+          "1/4 avocado",
+          "Juice of 1/2 lime",
+        ],
+        boosters: ["Add pink salt for extra minerals", "Top with chia seeds"],
+        steps: [
+          "Blend coconut water, aloe, and pineapple until smooth.",
+          "Add avocado and lime juice; blend briefly.",
+          "Serve chilled with chia sprinkle.",
+        ],
+      },
+      {
+        id: "melon-mint-splash",
+        name: "Melon Mint Splash",
+        description: "Watermelon, cucumber, and mint for a crisp and cooling sip.",
+        macros: { calories: 150, protein: 3, carbs: 30 },
+        saves: 98,
+        color: "#a7ffeb",
+        ingredients: [
+          "1 cup watermelon",
+          "1/2 cup cucumber",
+          "6 mint leaves",
+          "1/2 lime",
+          "4 ice cubes",
+        ],
+        boosters: ["Add matcha for a gentle lift", "Blend with basil for variety"],
+        steps: [
+          "Blend watermelon and cucumber together.",
+          "Add mint leaves and lime juice.",
+          "Pulse with ice for a slushy texture.",
+        ],
+      },
+      {
+        id: "pineapple-electrolyte-pop",
+        name: "Pineapple Electrolyte Pop",
+        description: "Tropical hydration with potassium-rich pineapple and coconut.",
+        macros: { calories: 205, protein: 6, carbs: 35 },
+        saves: 112,
+        color: "#ffe082",
+        ingredients: [
+          "1 cup pineapple",
+          "1/2 banana",
+          "1 tbsp hemp seeds",
+          "1 cup coconut milk",
+          "1 tsp honey",
+        ],
+        boosters: ["Add coconut flakes", "Blend with collagen for extra protein"],
+        steps: [
+          "Blend pineapple, banana, and coconut milk until smooth.",
+          "Add hemp seeds and honey.",
+          "Serve over ice with coconut flakes.",
+        ],
+      },
+    ],
+  },
 };
 
 const SeasonalDropsPage = ({ searchParams }: { searchParams: { season?: string } }) => {
@@ -179,6 +252,13 @@ const SeasonalDropsPage = ({ searchParams }: { searchParams: { season?: string }
             key={recipe.id}
             className="flex flex-col gap-4 rounded-3xl border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-6 shadow-sm shadow-[color:var(--color-accent-berry)]/10"
           >
+            {recipe.color ? (
+              <div
+                className="mb-2 h-2 w-full rounded-full"
+                style={{ backgroundColor: recipe.color }}
+                aria-hidden
+              />
+            ) : null}
             <div className="flex items-start justify-between">
               <div>
                 <h2 className="text-lg font-semibold text-[color:var(--color-foreground)]">
@@ -192,6 +272,11 @@ const SeasonalDropsPage = ({ searchParams }: { searchParams: { season?: string }
                 <p>{recipe.macros.calories} cal</p>
                 <p>{recipe.macros.protein}g protein</p>
                 <p>{recipe.macros.carbs}g carbs</p>
+                {typeof recipe.saves === "number" ? (
+                  <p className="mt-1 font-semibold text-[color:var(--color-accent-berry)]">
+                    {recipe.saves} saves
+                  </p>
+                ) : null}
               </div>
             </div>
 
@@ -230,8 +315,10 @@ const SeasonalDropsPage = ({ searchParams }: { searchParams: { season?: string }
           </article>
         ))}
       </section>
+      {season === "summer" ? <SummerBuilder /> : null}
     </div>
   );
 };
 
 export default SeasonalDropsPage;
+import SummerBuilder from "./SummerBuilder";
