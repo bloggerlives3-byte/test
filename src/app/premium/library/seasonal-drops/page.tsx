@@ -1,24 +1,15 @@
-type SeasonalRecipe = {
-  id: string;
-  name: string;
-  description: string;
-  macros: { calories: number; protein: number; carbs: number };
-  saves?: number;
-  color?: string;
-  ingredients: string[];
-  boosters: string[];
-  steps: string[];
-};
+import Link from "next/link";
+import SeasonalRecipeCard from "./SeasonalRecipeCard";
+import SummerBuilder from "./SummerBuilder";
+import AutumnBuilder from "./AutumnBuilder";
+import type { SeasonalRecipe } from "./types";
 
-const seasonalSets: Record<
-  string,
-  {
-    title: string;
-    heading: string;
-    description: string;
-    recipes: SeasonalRecipe[];
-  }
-> = {
+const SEASONAL_SETS: Record<string, {
+  title: string;
+  heading: string;
+  description: string;
+  recipes: SeasonalRecipe[];
+}> = {
   winter: {
     title: "Seasonal Drops · Winter Immunity",
     heading: "Cozy blends for immune support",
@@ -30,6 +21,10 @@ const seasonalSets: Record<
         name: "Ginger Citrus Shield",
         description: "Zesty vitamin C boost with warming ginger for circulation.",
         macros: { calories: 240, protein: 8, carbs: 45 },
+        saves: 142,
+        color: "#f8bbd0",
+        ingredientIds: ["pineapple", "greek-yogurt", "chia-seeds"],
+        boosterIds: ["booster-spirulina"],
         ingredients: [
           "1 orange, peeled",
           "1/2 grapefruit",
@@ -49,6 +44,10 @@ const seasonalSets: Record<
         name: "Maple Chai Recovery",
         description: "Comforting chai spices paired with protein for post-workout recovery.",
         macros: { calories: 310, protein: 22, carbs: 38 },
+        saves: 168,
+        color: "#ffe0b2",
+        ingredientIds: ["banana", "protein-powder", "peanut-butter"],
+        boosterIds: ["booster-collagen"],
         ingredients: [
           "1 frozen banana",
           "1 scoop vanilla protein",
@@ -68,6 +67,10 @@ const seasonalSets: Record<
         name: "Spiced Beet Glow",
         description: "Earthy beet with warming spices to promote circulation and glow.",
         macros: { calories: 210, protein: 6, carbs: 40 },
+        saves: 119,
+        color: "#f48fb1",
+        ingredientIds: ["spinach", "kale", "chia-seeds"],
+        boosterIds: ["booster-protein"],
         ingredients: [
           "1 small roasted beet",
           "1 cup frozen berries",
@@ -95,6 +98,10 @@ const seasonalSets: Record<
         name: "Minty Green Awakening",
         description: "Cooling mint paired with spinach and pineapple for a crisp morning start.",
         macros: { calories: 190, protein: 7, carbs: 32 },
+        saves: 132,
+        color: "#b2f2bb",
+        ingredientIds: ["spinach", "pineapple", "cucumber"],
+        boosterIds: ["booster-spirulina"],
         ingredients: [
           "1 cup spinach",
           "1/2 cup pineapple",
@@ -114,6 +121,10 @@ const seasonalSets: Record<
         name: "Citrus Detox Refresher",
         description: "Grapefruit, lime, and basil combine for a hydrating detox blend.",
         macros: { calories: 160, protein: 4, carbs: 35 },
+        saves: 101,
+        color: "#a5d8ff",
+        ingredientIds: ["pineapple", "spinach"],
+        boosterIds: ["booster-collagen"],
         ingredients: [
           "1 grapefruit, segmented",
           "Juice of 1 lime",
@@ -133,6 +144,10 @@ const seasonalSets: Record<
         name: "Watercress Glow",
         description: "Peppery greens plus pear and kiwi deliver a spring glow.",
         macros: { calories: 170, protein: 5, carbs: 33 },
+        saves: 94,
+        color: "#d8f5a2",
+        ingredientIds: ["spinach", "avocado", "chia-seeds"],
+        boosterIds: ["booster-chia"],
         ingredients: [
           "1 cup watercress",
           "1 ripe pear",
@@ -162,6 +177,8 @@ const seasonalSets: Record<
         macros: { calories: 180, protein: 4, carbs: 32 },
         saves: 124,
         color: "#81d4fa",
+        ingredientIds: ["pineapple", "cucumber", "avocado"],
+        boosterIds: ["booster-protein"],
         ingredients: [
           "1 cup coconut water",
           "1/2 cup aloe vera juice",
@@ -183,6 +200,8 @@ const seasonalSets: Record<
         macros: { calories: 150, protein: 3, carbs: 30 },
         saves: 98,
         color: "#a7ffeb",
+        ingredientIds: ["pineapple", "cucumber"],
+        boosterIds: ["booster-spirulina"],
         ingredients: [
           "1 cup watermelon",
           "1/2 cup cucumber",
@@ -204,6 +223,8 @@ const seasonalSets: Record<
         macros: { calories: 205, protein: 6, carbs: 35 },
         saves: 112,
         color: "#ffe082",
+        ingredientIds: ["pineapple", "banana", "chia-seeds"],
+        boosterIds: ["booster-protein"],
         ingredients: [
           "1 cup pineapple",
           "1/2 banana",
@@ -220,105 +241,123 @@ const seasonalSets: Record<
       },
     ],
   },
+  autumn: {
+    title: "Seasonal Drops · Autumn Recovery",
+    heading: "Comfort blends to restore and soothe",
+    description:
+      "Slow down with chai spices, pumpkin, and warming adaptogens. These favorites help you reset after active months.",
+    recipes: [
+      {
+        id: "pumpkin-spice-reboot",
+        name: "Pumpkin Spice Reboot",
+        description: "Creamy pumpkin-inspired blend with protein for balanced recovery.",
+        macros: { calories: 260, protein: 18, carbs: 30 },
+        saves: 156,
+        color: "#ffcc80",
+        ingredientIds: ["banana", "protein-powder", "peanut-butter"],
+        boosterIds: ["booster-collagen"],
+        ingredients: [
+          "1/2 cup pumpkin puree",
+          "1 frozen banana",
+          "1 scoop vanilla protein",
+          "1 tsp maple syrup",
+          "1/2 tsp pumpkin pie spice",
+        ],
+        boosters: ["Add collagen for joint care", "Top with crushed pecans"],
+        steps: [
+          "Blend pumpkin, banana, and protein until smooth.",
+          "Add maple and spice, blend again.",
+          "Serve warm or chilled with pecan sprinkle.",
+        ],
+      },
+      {
+        id: "apple-chai-muscle-soothe",
+        name: "Apple Chai Muscle Soothe",
+        description: "Chai tea, apple, and greens to support muscle recovery and calm.",
+        macros: { calories: 200, protein: 10, carbs: 35 },
+        saves: 104,
+        color: "#ffe0b2",
+        ingredientIds: ["spinach", "kale", "protein-powder"],
+        boosterIds: ["booster-spirulina"],
+        ingredients: [
+          "1 cup cooled chai tea",
+          "1 small apple",
+          "1 handful spinach",
+          "1 handful kale",
+          "1 tbsp chia seeds",
+        ],
+        boosters: ["Add ashwagandha for stress support"],
+        steps: [
+          "Blend chai and greens until smooth.",
+          "Add apple and chia; blend briefly.",
+          "Serve with a dusting of cinnamon.",
+        ],
+      },
+      {
+        id: "cinnamon-ashwagandha-calm",
+        name: "Cinnamon Ashwagandha Calm",
+        description: "Adaptogen-rich blend with banana and yogurt for a soothing evening treat.",
+        macros: { calories: 230, protein: 12, carbs: 28 },
+        saves: 131,
+        color: "#ffb74d",
+        ingredientIds: ["banana", "greek-yogurt", "chia-seeds"],
+        boosterIds: ["booster-collagen"],
+        ingredients: [
+          "1 banana",
+          "1/2 cup Greek yogurt",
+          "1 tbsp almond butter",
+          "1/2 tsp cinnamon",
+          "1/4 tsp ashwagandha powder",
+        ],
+        boosters: ["Add collagen for extra recovery", "Top with cacao nibs"],
+        steps: [
+          "Blend all ingredients until smooth.",
+          "Serve warm or chilled with cacao nibs.",
+        ],
+      },
+    ],
+  },
 };
+
+const builderBySeason = {
+  summer: SummerBuilder,
+  autumn: AutumnBuilder,
+} as const;
 
 const SeasonalDropsPage = ({ searchParams }: { searchParams: { season?: string } }) => {
   const season = searchParams?.season ?? "winter";
-  const activeSet = seasonalSets[season] ?? seasonalSets.winter;
+  const config = SEASONAL_SETS[season] ?? SEASONAL_SETS.winter;
+  const Builder = builderBySeason[season as keyof typeof builderBySeason];
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-16">
-      <a
+      <Link
         href="/premium/library"
         className="text-xs font-semibold text-[color:var(--color-accent-leaf)] underline-offset-4 hover:underline"
       >
         ← Back to premium library
-      </a>
+      </Link>
       <header className="mt-4 flex flex-col gap-3 rounded-3xl bg-[color:var(--color-accent-berry)]/10 p-6">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[color:var(--color-accent-berry)]">
-          {activeSet.title}
+          {config.title}
         </p>
         <h1 className="text-3xl font-semibold text-[color:var(--color-foreground)]">
-          {activeSet.heading}
+          {config.heading}
         </h1>
         <p className="text-sm text-[color:var(--color-foreground)]/70">
-          {activeSet.description}
+          {config.description}
         </p>
       </header>
 
       <section className="mt-10 grid gap-6 md:grid-cols-3">
-        {activeSet.recipes.map((recipe) => (
-          <article
-            key={recipe.id}
-            className="flex flex-col gap-4 rounded-3xl border border-[color:var(--color-border)] bg-[color:var(--color-surface)] p-6 shadow-sm shadow-[color:var(--color-accent-berry)]/10"
-          >
-            {recipe.color ? (
-              <div
-                className="mb-2 h-2 w-full rounded-full"
-                style={{ backgroundColor: recipe.color }}
-                aria-hidden
-              />
-            ) : null}
-            <div className="flex items-start justify-between">
-              <div>
-                <h2 className="text-lg font-semibold text-[color:var(--color-foreground)]">
-                  {recipe.name}
-                </h2>
-                <p className="mt-1 text-sm text-[color:var(--color-foreground)]/70">
-                  {recipe.description}
-                </p>
-              </div>
-              <div className="text-right text-xs text-[color:var(--color-foreground)]/60">
-                <p>{recipe.macros.calories} cal</p>
-                <p>{recipe.macros.protein}g protein</p>
-                <p>{recipe.macros.carbs}g carbs</p>
-                {typeof recipe.saves === "number" ? (
-                  <p className="mt-1 font-semibold text-[color:var(--color-accent-berry)]">
-                    {recipe.saves} saves
-                  </p>
-                ) : null}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-semibold text-[color:var(--color-foreground)]">
-                Ingredients
-              </h3>
-              <ul className="mt-2 space-y-1 text-sm text-[color:var(--color-foreground)]/80">
-                {recipe.ingredients.map((ingredient) => (
-                  <li key={ingredient}>{ingredient}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-semibold text-[color:var(--color-foreground)]">
-                Recommended Boosters
-              </h3>
-              <ul className="mt-2 space-y-1 text-sm text-[color:var(--color-foreground)]/80">
-                {recipe.boosters.map((booster) => (
-                  <li key={booster}>{booster}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-sm font-semibold text-[color:var(--color-foreground)]">
-                Steps
-              </h3>
-              <ol className="mt-2 space-y-1 text-sm text-[color:var(--color-foreground)]/80">
-                {recipe.steps.map((step) => (
-                  <li key={step}>{step}</li>
-                ))}
-              </ol>
-            </div>
-          </article>
+        {config.recipes.map((recipe) => (
+          <SeasonalRecipeCard key={recipe.id} recipe={recipe} />
         ))}
       </section>
-      {season === "summer" ? <SummerBuilder /> : null}
+
+      {Builder ? <Builder /> : null}
     </div>
   );
 };
 
 export default SeasonalDropsPage;
-import SummerBuilder from "./SummerBuilder";
