@@ -24,7 +24,7 @@ const ProSuccessPage = () => {
             Set team roles, upload branding, and create client cohorts so everyone sees the right smoothies and plans.
           </p>
           <Link
-            href="/builder"
+            href="/pro/workspace"
             className="mt-4 inline-flex items-center justify-center rounded-full border border-[color:var(--color-accent-leaf)] px-4 py-2 text-xs font-semibold text-[color:var(--color-accent-leaf)] transition hover:bg-[color:var(--color-accent-leaf)]/10"
           >
             Open Workspace Tools
@@ -39,7 +39,7 @@ const ProSuccessPage = () => {
             Clone signature blends, add your notes, and send client-ready recipe links in one click.
           </p>
           <Link
-            href="/recipes"
+            href="/pro/recipes"
             className="mt-4 inline-flex items-center justify-center rounded-full bg-[color:var(--color-accent-leaf)] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[color:var(--color-accent-leaf)]/90"
           >
             Curate Recipes
@@ -54,7 +54,7 @@ const ProSuccessPage = () => {
             Turn client plans into shareable grocery PDFs or CSVs with premium export formatting.
           </p>
           <Link
-            href="/grocery"
+            href="/pro/checklists"
             className="mt-4 inline-flex items-center justify-center rounded-full border border-[color:var(--color-accent-berry)] px-4 py-2 text-xs font-semibold text-[color:var(--color-accent-berry)] transition hover:bg-[color:var(--color-accent-berry)]/10"
           >
             Generate Checklists
@@ -70,10 +70,10 @@ const ProSuccessPage = () => {
           </p>
           <div className="mt-4 flex flex-col gap-2 text-xs">
             <Link
-              href="/downloads/smuv-pro-starter-kit.zip"
+              href="/downloads/smuv-pro-starter-kit"
               className="rounded-full bg-[color:var(--color-accent-leaf)] px-4 py-2 text-center font-semibold text-white transition hover:bg-[color:var(--color-accent-leaf)]/90"
             >
-              Download Pro Starter Kit
+              Open Pro Starter Kit
             </Link>
             <Link
               href="mailto:success@smuv-guide.com"
