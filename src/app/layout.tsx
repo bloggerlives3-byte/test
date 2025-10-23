@@ -3,6 +3,7 @@ import { Montserrat, Open_Sans } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { TranslationProvider } from "@/i18n/TranslationProvider";
 
 const montserrat = Montserrat({
   variable: "--font-heading",
@@ -32,11 +33,13 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${openSans.variable} antialiased`}
       >
-        <div className="flex min-h-screen flex-col bg-[color:var(--color-background)]">
-          <SiteHeader />
-          <main className="flex-1">{children}</main>
-          <SiteFooter />
-        </div>
+        <TranslationProvider>
+          <div className="flex min-h-screen flex-col bg-[color:var(--color-background)]">
+            <SiteHeader />
+            <main className="flex-1">{children}</main>
+            <SiteFooter />
+          </div>
+        </TranslationProvider>
       </body>
     </html>
   );

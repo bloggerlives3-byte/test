@@ -2,18 +2,22 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslation } from "@/i18n/TranslationProvider";
+import LocaleSwitcher from "./locale-switcher";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/builder", label: "Smoothie Builder" },
-  { href: "/recipes", label: "Signature Recipes" },
-  { href: "/grocery", label: "Grocery List" },
-  { href: "/pricing", label: "Pricing" },
+  { href: "/", labelKey: "navigation.home" },
+  { href: "/builder", labelKey: "navigation.builder" },
+  { href: "/recipes", labelKey: "navigation.recipes" },
+  { href: "/grocery", labelKey: "navigation.grocery" },
+  { href: "/pricing", labelKey: "navigation.pricing" },
+  { href: "/pro/success", labelKey: "navigation.pro" },
 ];
 
 export const SiteHeader = () => {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -59,10 +63,10 @@ export const SiteHeader = () => {
             SMU-V
           </span>
           <span className="text-[color:var(--color-foreground)]">
-            Guide
+            {t("header.brandTagline", "Guide")}
           </span>
         </Link>
-        <nav className="hidden gap-4 text-sm font-medium md:flex">
+        <nav className="hidden items-center gap-4 text-sm font-medium md:flex">
           {links.map((link) => {
             const isActive =
               link.href === "/"
@@ -80,10 +84,11 @@ export const SiteHeader = () => {
                     : "text-[color:var(--color-foreground)] hover:bg-[color:var(--color-accent-leaf)]/10"
                 }`}
               >
-                {link.label}
+                {t(link.labelKey, link.href)}
               </Link>
             );
           })}
+          <LocaleSwitcher />
         </nav>
         <button
           type="button"
@@ -132,10 +137,13 @@ export const SiteHeader = () => {
                       : "text-[color:var(--color-foreground)] hover:bg-[color:var(--color-accent-leaf)]/10"
                   }`}
                 >
-                  {link.label}
+                  {t(link.labelKey, link.href)}
                 </Link>
               );
             })}
+            <div className="pt-2">
+              <LocaleSwitcher />
+            </div>
           </nav>
         </div>
       ) : null}
