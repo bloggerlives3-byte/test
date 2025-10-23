@@ -1,0 +1,36 @@
+{
+  "home": {
+    "heroEyebrow": "SMU-V Guide",
+    "heroTitle": "Your smoothie co-pilot for speedy, nutritious blends.",
+    "heroSubtitle": "Craft custom smoothies, trust our curated recipes, and export shopping lists in under a minute. Ideal for health-focused routines and busy mornings.",
+    "buildCta": "Build a Smoothie",
+    "recipesCta": "Explore Recipes",
+    "wellnessTip": "Today’s Wellness Tip",
+    "features": [
+      {
+        "title": "Blend Your Way",
+        "description": "Select fruit, greens, and protein in seconds with real-time nutrition estimates."
+      },
+      {
+        "title": "Curated Favourites",
+        "description": "Lean on six signature smoothies tested for taste, health, and simplicity."
+      },
+      {
+        "title": "Smart Shopping",
+        "description": "Turn any smoothie into a shareable shopping checklist or quick email draft."
+      }
+    ],
+    "signatureTitle": "Signature Smoothies",
+    "signatureSubtitle": "Crafted blends from the SMU-V library. Tap a recipe to view full ingredients and save favourites.",
+    "viewAll": "View All",
+    "fromBlendTitle": "From Blend to Basket",
+    "fromBlendDescription": "Save any creation to build a shopping list in a tap. Stay organised with on-screen checklists or send ingredients to your inbox.",
+    "groceryCta": "Open Shopping Tools",
+    "checklistTitle": "Checklist Preview",
+    "checklistItems": [
+      "1 cup strawberries",
+      "1 scoop vanilla protein",
+      "1 tbsp chia seeds"
+    ]
+  }
+}

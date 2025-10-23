@@ -3,7 +3,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { messages, type SupportedLocale } from "./messages";
 
-const DEFAULT_LOCALE: SupportedLocale = "en-US";
+const DEFAULT_LOCALE: SupportedLocale = "en-GB";
 const STORAGE_KEY = "smuv-locale";
 
 type TranslationContextValue = {

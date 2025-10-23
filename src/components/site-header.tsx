@@ -11,7 +11,6 @@ const links = [
   { href: "/recipes", labelKey: "navigation.recipes" },
   { href: "/grocery", labelKey: "navigation.grocery" },
   { href: "/pricing", labelKey: "navigation.pricing" },
-  { href: "/pro/success", labelKey: "navigation.pro" },
 ];
 
 export const SiteHeader = () => {

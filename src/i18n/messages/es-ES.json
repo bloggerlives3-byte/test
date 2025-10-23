@@ -1,0 +1,36 @@
+{
+  "home": {
+    "heroEyebrow": "SMU-V Guía",
+    "heroTitle": "Tu copiloto de batidos para mezclas rápidas y nutritivas.",
+    "heroSubtitle": "Crea batidos personalizados, aprovecha nuestras recetas destacadas y exporta listas de compras en menos de un minuto. Diseñado para rutinas saludables y mañanas ocupadas.",
+    "buildCta": "Crear un Batido",
+    "recipesCta": "Explorar Recetas",
+    "wellnessTip": "Consejo de Bienestar de Hoy",
+    "features": [
+      {
+        "title": "Mezcla a Tu Manera",
+        "description": "Elige frutas, verduras y proteínas en segundos con estimaciones nutricionales en tiempo real."
+      },
+      {
+        "title": "Favoritos Curados",
+        "description": "Confía en seis batidos distintivos probados por su sabor, salud y simplicidad."
+      },
+      {
+        "title": "Compra Inteligente",
+        "description": "Convierte cualquier batido en una lista de compras compartible o en un correo rápido."
+      }
+    ],
+    "signatureTitle": "Batidos Destacados",
+    "signatureSubtitle": "Mezclas elaboradas de la biblioteca SMU-V. Toca una receta para ver los ingredientes completos y guardarla.",
+    "viewAll": "Ver Todo",
+    "fromBlendTitle": "Del Batido a la Cesta",
+    "fromBlendDescription": "Guarda cualquier creación para crear una lista de compras al instante. Mantente organizado con listas en pantalla o envía los ingredientes a tu bandeja de entrada.",
+    "groceryCta": "Abrir Herramientas de Compras",
+    "checklistTitle": "Vista Previa de la Lista",
+    "checklistItems": [
+      "1 taza de fresas",
+      "1 medida de proteína de vainilla",
+      "1 cucharada de semillas de chía"
+    ]
+  }
+}
